@@ -1,4 +1,3 @@
-import { DataTypes, where } from "sequelize";
 import { ProdutosModel } from "../models/ProdutosModel";
 import { Request, Response } from "express";
 import { MsgErro } from "./Alerta";
@@ -43,7 +42,7 @@ class Produtos {
     // FILTRAR PRODUTOS POR CARTEGORIA
     async FiltrarCategoria(req: Request, res: Response) {
         try {
-            const { categoria } = req.params;
+            const { categoria } = req.body;
             const query = `${FiltrarProdutoCategorias} '${categoria}'`
             const teste = await Mysql.query(query);
             res.json(teste[0]);

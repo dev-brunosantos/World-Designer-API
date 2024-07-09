@@ -5,7 +5,7 @@ export const ProdutosRoutes = Router()
 
 ProdutosRoutes
     .get('/produtos', ProdutosControllers.VerProdutos)
-    .get('/produtos/categorias/:categoria', ProdutosControllers.FiltrarCategoria)
+    // .get('/produtos/categorias/:categoria', ProdutosControllers.FiltrarCategoria)
     
     .post('/produtos/cadastrar', ProdutosControllers.Cadastrar)
-    .post('/produtos/categorias', ProdutosControllers.FiltrarCategoria)
+    .post('/produtos/categorias/', ProdutosControllers.FiltrarCategoria)
