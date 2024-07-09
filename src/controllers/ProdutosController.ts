@@ -9,8 +9,9 @@ class Produtos {
     // CADASTRAR NOVOS PRODUTOS
     async Cadastrar(req: Request, res: Response) {
         try {
-            const { produto, id_categoria, descricao, preco } = req.body
+            const { img, produto, id_categoria, descricao, preco } = req.body
             const criar = await ProdutosModel.create({
+                img: img,
                 produto: produto,
                 id_categoria: id_categoria,
                 descricao: descricao,

@@ -7,6 +7,10 @@ export const ProdutosModel = Mysql.define('produtos', {
         primaryKey: true, 
         autoIncrement: true
     },
+    img: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     produto: {
         type: DataTypes.STRING,
         allowNull: false,
