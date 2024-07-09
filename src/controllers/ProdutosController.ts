@@ -4,6 +4,8 @@ import { Request, Response } from "express";
 import { MsgErro } from "./Alerta";
 import { Mysql } from "../database/mysql";
 
+import { FiltrarProdutoCategorias } from "../database/querys/produtos";
+
 class Produtos {
     // CADASTRAR NOVOS PRODUTOS
     async Cadastrar(req: Request, res: Response) {
@@ -39,34 +41,10 @@ class Produtos {
         }
     }
     // FILTRAR PRODUTOS POR CARTEGORIA
-    // async FiltrarCategoria(req: Request, res: Response) {
-
-    //     try {
-    //         const { categoria } = req.body
-    //         const teste = await Mysql.query(`
-    //             select p.id_produto, p.produto,  c.categoria, p.descricao, p.preco 
-    //             from produtos p, categorias c 
-    //             where p.id_categoria = c.id_categoria and c.categoria = '${categoria}'
-    //         `)
-
-    //         // const categorias = await ProdutosModel.findAll({where})
-    //         res.json(teste)
-    //     } catch (error) {
-    //         res.json({
-    //             mensagem: `Erro ao buscar dados dos produtos. ${MsgErro}`,
-    //             erro: error
-    //         })
-    //     }
-    // }
-
     async FiltrarCategoria(req: Request, res: Response) {
         try {
             const { categoria } = req.params;
-            const query = `
-                SELECT p.id_produto, p.produto, c.categoria, p.descricao, p.preco 
-                FROM produtos p, categorias c 
-                WHERE p.id_categoria = c.id_categoria AND c.categoria = '${categoria}'
-            `;
+            const query = `${FiltrarProdutoCategorias} '${categoria}'`
             const teste = await Mysql.query(query);
             res.json(teste[0]);
         } catch (error) {
